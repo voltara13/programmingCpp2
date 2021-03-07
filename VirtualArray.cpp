@@ -1,4 +1,4 @@
-#include "VirtualArray.h"
+п»ї#include "VirtualArray.h"
 
 constexpr int size_int = sizeof(int);
 constexpr int count_int_page = 512 / size_int;
@@ -22,12 +22,12 @@ VirtualArray::VirtualArray(const long long int& size, const char* file_name) : s
 {
 	file.open(file_name, std::fstream::in | std::fstream::out | std::fstream::binary | std::fstream::trunc);
 	file.write("VM" , 2);
-	//Округляя в большую сторону, вычисляем необходимое количество страниц и умножаем на размер страницы
+	//РћРєСЂСѓРіР»СЏСЏ РІ Р±РѕР»СЊС€СѓСЋ СЃС‚РѕСЂРѕРЅСѓ, РІС‹С‡РёСЃР»СЏРµРј РЅРµРѕР±С…РѕРґРёРјРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‚СЂР°РЅРёС† Рё СѓРјРЅРѕР¶Р°РµРј РЅР° СЂР°Р·РјРµСЂ СЃС‚СЂР°РЅРёС†С‹
 	for (unsigned long long int size_file = ceil(static_cast<double>(size) / static_cast<double>(count_int_page)) * size_page; size_file; --size_file)
-		file.write("\0", 1); //Заполняем файл нулевыми байтами
+		file.write("\0", 1); //Р—Р°РїРѕР»РЅСЏРµРј С„Р°Р№Р» РЅСѓР»РµРІС‹РјРё Р±Р°Р№С‚Р°РјРё
 }
 
-VirtualArray::~VirtualArray() //Перед удалением объекта происходит сохранение и закрытие файла
+VirtualArray::~VirtualArray() //РџРµСЂРµРґ СѓРґР°Р»РµРЅРёРµРј РѕР±СЉРµРєС‚Р° РїСЂРѕРёСЃС…РѕРґРёС‚ СЃРѕС…СЂР°РЅРµРЅРёРµ Рё Р·Р°РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°
 {
 	save_page();
 	file.close();
@@ -48,7 +48,7 @@ int VirtualArray::calc_address(const long long int& index)
 
 void VirtualArray::save_page()
 {
-	if (page::modified) //Сохранение происходит только в том случае, если страница модифицировалась
+	if (page::modified) //РЎРѕС…СЂР°РЅРµРЅРёРµ РїСЂРѕРёСЃС…РѕРґРёС‚ С‚РѕР»СЊРєРѕ РІ С‚РѕРј СЃР»СѓС‡Р°Рµ, РµСЃР»Рё СЃС‚СЂР°РЅРёС†Р° РјРѕРґРёС„РёС†РёСЂРѕРІР°Р»Р°СЃСЊ
 		write_page();
 }
 
@@ -56,7 +56,7 @@ void VirtualArray::read_page(const long long int& page_num)
 {
 	page::num_page_in_mem = page_num;
 	page::modified = false;
-	const int byte_page = size_page * page_num + 2; //Вычисляется первый байт нужной страницы
+	const int byte_page = size_page * page_num + 2; //Р’С‹С‡РёСЃР»СЏРµС‚СЃСЏ РїРµСЂРІС‹Р№ Р±Р°Р№С‚ РЅСѓР¶РЅРѕР№ СЃС‚СЂР°РЅРёС†С‹
 	try
 	{
 		file.seekg(byte_page);
@@ -65,14 +65,14 @@ void VirtualArray::read_page(const long long int& page_num)
 	}
 	catch (const std::exception&)
 	{
-		std::cerr << "\nПроизошла ошибка при чтении файла\n";
+		std::cerr << "\nРџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РїСЂРё С‡С‚РµРЅРёРё С„Р°Р№Р»Р°\n";
 		exit(1);
 	}
 }
 
 void VirtualArray::write_page()
 {
-	const int byte_page = size_page * page::num_page_in_mem + 2; //Вычисляется первый байт нужной страницы
+	const int byte_page = size_page * page::num_page_in_mem + 2; //Р’С‹С‡РёСЃР»СЏРµС‚СЃСЏ РїРµСЂРІС‹Р№ Р±Р°Р№С‚ РЅСѓР¶РЅРѕР№ СЃС‚СЂР°РЅРёС†С‹
 	try
 	{
 		file.seekp(byte_page);
@@ -81,7 +81,7 @@ void VirtualArray::write_page()
 	}
 	catch (const std::exception&)
 	{
-		std::cerr << "\nПроизошла ошибка при записи в файл\n";
+		std::cerr << "\nРџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РїСЂРё Р·Р°РїРёСЃРё РІ С„Р°Р№Р»\n";
 		exit(1);
 	}
 }
@@ -93,10 +93,10 @@ int VirtualArray::read_var(const long long int& index)
 		const int index_array = calc_address(index);
 		if (page::bit_map[index_array])
 			return page::array[index_array];
-		std::cerr << "\nПо данному индексу значений не найдено\n";
+		std::cerr << "\nРџРѕ РґР°РЅРЅРѕРјСѓ РёРЅРґРµРєСЃСѓ Р·РЅР°С‡РµРЅРёР№ РЅРµ РЅР°Р№РґРµРЅРѕ\n";
 		exit(2);
 	}
-	std::cerr << "\nИндекс за пределами массива\n";
+	std::cerr << "\nРРЅРґРµРєСЃ Р·Р° РїСЂРµРґРµР»Р°РјРё РјР°СЃСЃРёРІР°\n";
 	exit(2);
 }
 
@@ -104,7 +104,7 @@ void VirtualArray::write_var(const long long int& index, const int& value)
 {
 	if (!(index >= 0 && index < size_array))
 	{
-		std::cerr << "\nИндекс за пределами массива\n";
+		std::cerr << "\nРРЅРґРµРєСЃ Р·Р° РїСЂРµРґРµР»Р°РјРё РјР°СЃСЃРёРІР°\n";
 		exit(2);
 	}
 	const int index_array = calc_address(index);

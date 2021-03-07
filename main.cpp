@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 
 #include "VirtualArray.h"
 
@@ -8,12 +8,12 @@ int main()
 	srand(time(0));
 	int size = 30 + rand() % 1000;
 	int index[30];
-	VirtualArray* a = VirtualArray::GetInstance(size); //Создаём объект (используется паттерн "Одиночка")
+	VirtualArray* a = VirtualArray::GetInstance(size); //РЎРѕР·РґР°С‘Рј РѕР±СЉРµРєС‚ (РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РїР°С‚С‚РµСЂРЅ "РћРґРёРЅРѕС‡РєР°")
 
-	std::cout << "Размер: " << size << std::endl;
+	std::cout << "Р Р°Р·РјРµСЂ: " << size << std::endl;
 	
-	std::cout << "Записанные значения\n";
-	for (int& i : index) //Записываем числа
+	std::cout << "Р—Р°РїРёСЃР°РЅРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ\n";
+	for (int& i : index) //Р—Р°РїРёСЃС‹РІР°РµРј С‡РёСЃР»Р°
 	{
 		i = 0 + rand() % size;
 		int value = 0 + rand() % 1000;
@@ -21,8 +21,8 @@ int main()
 		std::cout << "[" << i  << "]: "<< value << std::endl;
 	}
 	
-	std::cout << "Считанные значения\n";
-	for (int& i : index) //Считываем числа
+	std::cout << "РЎС‡РёС‚Р°РЅРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ\n";
+	for (int& i : index) //РЎС‡РёС‚С‹РІР°РµРј С‡РёСЃР»Р°
 		std::cout << "[" << i << "]: " << a->read_var(i) << std::endl;
 	
 	delete a;
