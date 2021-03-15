@@ -141,10 +141,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="VirtualArray.cpp" />
+    <ClCompile Include="MetaData.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="VirtualArray.h" />
+    <ClInclude Include="MetaData.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

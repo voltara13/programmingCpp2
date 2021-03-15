@@ -18,12 +18,12 @@
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="VirtualArray.cpp">
+    <ClCompile Include="MetaData.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="VirtualArray.h">
+    <ClInclude Include="MetaData.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
