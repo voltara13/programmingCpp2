@@ -19,7 +19,7 @@ int main()
 		int value = 0 + rand() % 1000;
 		a->write_var(i, value);
 		std::cout << "[" << i  << "]: "<< value << std::endl;
-	}
+	}//
 	
 	std::cout << "Считанные значения\n";
 	for (int& i : index) //Считываем числа
