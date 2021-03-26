@@ -1,11 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "metadata.h"
+
 #include <QMainWindow>
 #include <QMenuBar>
 #include <QMessageBox>
-
-#include "metadata.h"
 
 class MainWindow : public QMainWindow
 {

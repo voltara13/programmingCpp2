@@ -1,9 +1,9 @@
 #ifndef METADATA_H
 #define METADATA_H
 
-#include <QFile>
-
 #include "metaheadlist.h"
+
+#include <QFile>
 
 class metadata
 {
