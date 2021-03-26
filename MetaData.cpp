@@ -1,33 +1,28 @@
-﻿#include "MetaData.h"
+#include "metadata.h"
 
-meta_data::meta_data(const std::string& file_name) : file_name_(file_name) {}
-
-void meta_data::add_head(const std::string& buffer)
+metadata::metadata(const QString& file_name) : file_name_(file_name)
 {
-	std::stringstream buffer_stream;
-	meta_head head;
-	buffer_stream.str(buffer);
-	
-	buffer_stream >> head;
-
-	vector_meta_heads_.emplace_back(head);
+    read_heads_file();
 }
 
-void meta_data::read_heads_file()
+void metadata::add_head(QString buffer)
 {
-	std::string buffer;
-	std::ifstream file(file_name_);
-
-	while (std::getline(file, buffer))
-		add_head(buffer);
-
-	file.close();
+	const metahead head(buffer);
+    head_list = metaheadList::add(head, head_list);
 }
 
-void meta_data::print_head()
-{	
-	for (auto& head : vector_meta_heads_)
-		std::cout << head;	
+void metadata::read_heads_file()
+{
+    QString buffer;
+    const QString path = ":/" + file_name_;
+    QFile file(path);
+
+    if (file.open(QIODevice::ReadOnly | QFile::Text))
+    {
+        QTextStream buffer_stream(&file);
+        while (!buffer_stream.atEnd())
+            add_head(buffer_stream.readLine());
+    }
+
+    file.close();
 }
-
-

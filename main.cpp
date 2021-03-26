@@ -1,11 +1,11 @@
-﻿#include <iostream>
+#include "mainwindow.h"
 
-#include "MetaData.h"
+#include <QApplication>
 
-int main()
+int main(int argc, char *argv[])
 {
-	setlocale(LC_ALL, "Russian");
-	meta_data meta_data("data.txt");
-	meta_data.read_heads_file();
-	meta_data.print_head();
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+    return a.exec();
 }
