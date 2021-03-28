@@ -11,7 +11,7 @@ class MainWindow : public QMainWindow
 {
 private:
     Q_OBJECT
-    QMessageBox msg_box_;
+    QMessageBox msg_box_; //Диалоговое окно, которое показывает какой метод вызвался
     void add_menu_item(metaheadList*, QMenu* menu = nullptr) const;
     void add_menu_action(QWidget*, const metahead&) const;
 

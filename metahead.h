@@ -6,10 +6,10 @@
 class metahead
 { 
 private:
-    uint num_level;
-    QString name;
-    ushort status;
-    QString name_method;
+    uint num_level_; //Номер уровня
+    QString name_; //Название пункта
+    ushort status_; //Статус пункта
+    QString name_method_; //Название метода
 
 public:
     metahead(const QString&);

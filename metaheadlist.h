@@ -3,15 +3,17 @@
 
 #include "metahead.h"
 
+#include <utility>
+
 class metaheadList
 {
 public:
-    metahead item;
-    metaheadList* parent = nullptr;
-    metaheadList* next = nullptr;
-    metaheadList* sub_next = nullptr;
+    metahead item; //Пункт меню
+    metaheadList* parent = nullptr; //Родительское меню пункта
+    metaheadList* next = nullptr; //Следующий пункт меню
+    metaheadList* sub_next = nullptr; //Дочерний пункт меню
 
-    metaheadList(const metahead&);
+    metaheadList(metahead);
     static metaheadList* add(const metahead&, metaheadList*);
 };
 

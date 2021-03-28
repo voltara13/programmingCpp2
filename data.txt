@@ -1,5 +1,5 @@
-0 File 0 slot_file
-1 SaveFile 1 slot_save
+0 File 0
+1 SaveFile 1
 2 SaveFileAs 0 slot_save_as
 1 LoadFile2 2 slot_load
 1 About 0 slot_about
